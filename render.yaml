@@ -1,0 +1,15 @@
+databases:
+  - name: sqlite
+    ipAllowList: []
+
+services:
+  - type: web
+    name: my_app_render
+    env: ruby
+    buildCommand: "./render-build.sh"
+    startCommand: "bundle exec rails s"
+    envVars:
+      - key: DATABASE_URL
+        value: "sqlite3:///db/development.sqlite3" # Path to your SQLite database file
+      - key: RAILS_MASTER_KEY
+        sync: false
